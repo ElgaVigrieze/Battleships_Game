@@ -75,7 +75,9 @@ public class BattleshipGame {
     public void gameInitialize(String[][] computerField, ArrayList<Ship> computerShips, String[][] playerField,  ArrayList<Ship> playerShips){
         f.printPlayerField(computerField);
         c.createShip(computerField, computerShips);
+//        f.printField(computerField);
         p.createShip(playerField, playerShips);
+
     }
 
         public void gamePlay (String[][]playerField, String[][]computerFieldPublic, String[][]

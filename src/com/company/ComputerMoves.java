@@ -9,7 +9,6 @@ import static com.company.Field.*;
 
 
 public class ComputerMoves extends GameMoves {
-    Field f = new Field();
 
     @Override
     public void createShip(String[][] computerField, ArrayList<Ship>computerShips) {

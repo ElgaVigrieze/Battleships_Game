@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Ship {
     private final int length;
-    private ArrayList<int[]> squares = new ArrayList<>();
+    private final ArrayList<int[]> squares = new ArrayList<>();
 
 
     public ArrayList<int[]> getSquares() {

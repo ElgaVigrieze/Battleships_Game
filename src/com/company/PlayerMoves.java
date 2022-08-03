@@ -10,7 +10,7 @@ import static org.fusesource.jansi.Ansi.Color.RED;
 import static org.fusesource.jansi.Ansi.ansi;
 
 public class PlayerMoves extends GameMoves {
-    Field f = new Field();
+
 
     @Override
     public void createShip(String[][] playerField, ArrayList<Ship> playerShips) {
@@ -126,7 +126,7 @@ public class PlayerMoves extends GameMoves {
     @Override
     public boolean updateFieldAfterMove(String[][] computerField, String[][] computerFieldPublic, int[] indexes, ArrayList<Ship> computerShips) {
         boolean getMove;
-        String ship = "";
+        String ship;
         switch (computerField[indexes[0]][indexes[1]]) {
 
             case " o" -> {
@@ -150,7 +150,7 @@ public class PlayerMoves extends GameMoves {
                     ship = computerField[indexes[0]][indexes[1]];
                     computerField[indexes[0]][indexes[1]] = " x";
                     computerFieldPublic[indexes[0]][indexes[1]] = " x";
-                    markShipSunk(ship,computerField, computerShips);
+                    markShipSunk(ship,computerFieldPublic, computerShips);
                 }
             }
         }
