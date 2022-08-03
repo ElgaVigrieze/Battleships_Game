@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public abstract class GameMoves {
 
@@ -77,9 +78,12 @@ public abstract class GameMoves {
                         sunk++;
                         for (int i = 0; i < ship.getSquares().size(); i++) {
                             int[] indexesShip = ship.getSquares().get(i);
+                            System.out.println(Arrays.toString(indexesShip));
                             field[indexesShip[0]][indexesShip[1]] = "xx";
                         }
                     }
+                System.out.println(countX);
+                System.out.println(sunk);
                 }
             case "s5" -> {
                 Ship ship = ships.get(4);

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import static com.company.BattleshipGame.convertMoveToIndexes;
+import static com.company.BattleshipGame.hitShip;
 import static com.company.Field.*;
 
 
@@ -213,7 +214,6 @@ public class ComputerMoves extends GameMoves {
             }
 
     }
-
 
     @Override
     public int[] makeMove(String[][] playerField, String[][] fieldPublic, ArrayList<Ship> ships) {
@@ -514,7 +514,7 @@ public class ComputerMoves extends GameMoves {
 
     public void compMoveInitial(String[][]playerField,  String[][] field, ArrayList < Ship > playerShips){
         int[] indexesComp= computerMovesRandom(playerField);
-        String hitShip = f.hitShip(playerField, indexesComp);
+        String hitShip = hitShip(playerField, indexesComp);
         updateFieldAfterMove(playerField, field, indexesComp, playerShips);
         f.printField(playerField);
         markShipSunk(hitShip, playerField, playerShips);
@@ -523,7 +523,7 @@ public class ComputerMoves extends GameMoves {
 
     public void compMoveRecurring(String[][]playerField, String[][] field, ArrayList < Ship > playerShips){
         int[] indexesComp = makeMove(playerField, field,  playerShips);
-        String hitShip = f.hitShip(playerField, indexesComp);
+        String hitShip = hitShip(playerField, indexesComp);
         updateFieldAfterMove(playerField, field, indexesComp, playerShips);
         markShipSunk(hitShip, playerField, playerShips);
     }

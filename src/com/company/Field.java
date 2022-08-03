@@ -1,11 +1,6 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.Objects;
-
-
 import static org.fusesource.jansi.Ansi.Color.GREEN;
-import static org.fusesource.jansi.Ansi.Color.RED;
 import static org.fusesource.jansi.Ansi.ansi;
 
 public class Field {
@@ -34,17 +29,6 @@ public class Field {
 
         return field;
     }
-
-
-
-    public String hitShip(String[][] playerField, int[] indexesComp){
-        int number = indexesComp[0];
-        int letter = indexesComp[1];
-        if (playerField[number][letter].contains("s")) {
-            return playerField[number][letter];
-        }
-    return "";
-   }
 
     public void printField(String[][] field) {
         for (String[] strings : field) {

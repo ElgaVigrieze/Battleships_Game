@@ -63,9 +63,19 @@ public class BattleshipGame {
         return win;
     }
 
+    static String hitShip(String[][] playerField, int[] indexesComp){
+        int number = indexesComp[0];
+        int letter = indexesComp[1];
+        if (playerField[number][letter].contains("s")) {
+            return playerField[number][letter];
+        }
+        return "";
+    }
+
     public void gameInitialize(String[][] computerField, ArrayList<Ship> computerShips, String[][] playerField,  ArrayList<Ship> playerShips){
         f.printPlayerField(computerField);
         c.createShip(computerField, computerShips);
+        f.printField(computerField);
         p.createShip(playerField, playerShips);
     }
 

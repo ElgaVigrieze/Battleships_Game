@@ -13,6 +13,20 @@ public class PlayerMoves extends GameMoves {
     Field f = new Field();
 
     @Override
+    public void createShip(String[][] playerField, ArrayList<Ship> playerShips) {
+        for (int i = 2; i < 7; i++) {
+            Ship s = new Ship(i);
+
+            do {
+                defineShipLocation(s, playerField, playerShips.size() + 1);
+            } while (s.getSquares().isEmpty());
+
+            playerShips.add(s);
+            f.printField(playerField);
+        }
+    }
+
+    @Override
     public void defineShipLocation(Ship ship, String[][] playerField, int shipNo) {
         String move1;
         int[] indexes1;
@@ -25,11 +39,9 @@ public class PlayerMoves extends GameMoves {
         if (move1.length() != 3) {
             return;
         }
-
         if (indexes1[0] == 0 || indexes1[1] == 0) {
             return;
         }
-
         String move2;
         int[] indexes2;
         do {
@@ -75,7 +87,6 @@ public class PlayerMoves extends GameMoves {
             // 2)check whether square is empty
             if (indexes1[0] - 1 + ship.getLength() > LENGTH_OF_FIELD) {
                 System.out.println(ansi().fg(RED).a("Ship too long to be placed at the coordinates given, choose another square").reset());
-                ;
                 return;
             }
             int count = 0;
@@ -94,21 +105,6 @@ public class PlayerMoves extends GameMoves {
                     }
                 }
             }
-        }
-
-    }
-
-    @Override
-    public void createShip(String[][] playerField, ArrayList<Ship> playerShips) {
-        for (int i = 2; i < 7; i++) {
-            Ship s = new Ship(i);
-
-            do {
-                defineShipLocation(s, playerField, playerShips.size() + 1);
-            } while (s.getSquares().isEmpty());
-
-            playerShips.add(s);
-            f.printField(playerField);
         }
     }
 
@@ -130,6 +126,7 @@ public class PlayerMoves extends GameMoves {
     @Override
     public boolean updateFieldAfterMove(String[][] computerField, String[][] computerFieldPublic, int[] indexes, ArrayList<Ship> computerShips) {
         boolean getMove;
+        String ship = "";
         switch (computerField[indexes[0]][indexes[1]]) {
 
             case " o" -> {
@@ -150,121 +147,15 @@ public class PlayerMoves extends GameMoves {
                 getMove = true;
                 if (computerField[indexes[0]][indexes[1]].contains("s")) {
                     System.out.println("It's a hit");
-
-                    int countX = 0;
-                    int sunk = 0;
-
-                    switch (computerField[indexes[0]][indexes[1]]) {
-                        case "s1" -> {
-                            Ship ship = computerShips.get(0);
-                            for (int i = 0; i < ship.getSquares().size(); i++) {
-                                int[] indexesShip = ship.getSquares().get(i);
-                                if (computerField[indexesShip[0]][indexesShip[1]].equals(" x")) {
-                                    countX++;
-                                }
-                            }
-                            if (countX + 1 == ship.getLength()) {
-                                sunk++;
-                                for (int i = 0; i < ship.getSquares().size(); i++) {
-                                    int[] indexesShip = ship.getSquares().get(i);
-                                    computerFieldPublic[indexesShip[0]][indexesShip[1]] = "xx";
-                                }
-                            }
-                        }
-                        case "s2" -> {
-                            Ship ship = computerShips.get(1);
-                            for (int i = 0; i < ship.getSquares().size(); i++) {
-                                int[] indexesShip = ship.getSquares().get(i);
-                                if (computerField[indexesShip[0]][indexesShip[1]].equals(" x")) {
-                                    countX++;
-                                }
-                            }
-                            if (countX + 1 == ship.getLength()) {
-                                sunk++;
-                                for (int i = 0; i < ship.getSquares().size(); i++) {
-                                    int[] indexesShip = ship.getSquares().get(i);
-                                    computerFieldPublic[indexesShip[0]][indexesShip[1]] = "xx";
-                                }
-                            }
-                        }
-                        case "s3" -> {
-                            Ship ship = computerShips.get(2);
-                            for (int i = 0; i < ship.getSquares().size(); i++) {
-                                int[] indexesShip = ship.getSquares().get(i);
-                                if (computerField[indexesShip[0]][indexesShip[1]].equals(" x")) {
-                                    countX++;
-                                }
-                            }
-                            if (countX + 1 == ship.getLength()) {
-                                sunk++;
-                                for (int i = 0; i < ship.getSquares().size(); i++) {
-                                    int[] indexesShip = ship.getSquares().get(i);
-                                    computerFieldPublic[indexesShip[0]][indexesShip[1]] = "xx";
-                                }
-                            }
-                        }
-                        case "s4" -> {
-                            Ship ship = computerShips.get(3);
-                            for (int i = 0; i < ship.getSquares().size(); i++) {
-                                int[] indexesShip = ship.getSquares().get(i);
-                                if (computerField[indexesShip[0]][indexesShip[1]].equals(" x")) {
-                                    countX++;
-                                }
-                            }
-                            if (countX + 1 == ship.getLength()) {
-                                sunk++;
-                                for (int i = 0; i < ship.getSquares().size(); i++) {
-                                    int[] indexesShip = ship.getSquares().get(i);
-                                    computerFieldPublic[indexesShip[0]][indexesShip[1]] = "xx";
-                                }
-                            }
-                        }
-                        case "s5" -> {
-                            Ship ship = computerShips.get(4);
-                            for (int i = 0; i < ship.getSquares().size(); i++) {
-                                int[] indexesShip = ship.getSquares().get(i);
-                                if (computerField[indexesShip[0]][indexesShip[1]].equals(" x")) {
-                                    countX++;
-                                }
-                            }
-                            if (countX + 1 == ship.getLength()) {
-                                sunk++;
-                                for (int i = 0; i < ship.getSquares().size(); i++) {
-                                    int[] indexesShip = ship.getSquares().get(i);
-                                    computerFieldPublic[indexesShip[0]][indexesShip[1]] = "xx";
-                                }
-                            }
-                        }
-                        case "s6" -> {
-                            Ship ship = computerShips.get(5);
-                            for (int i = 0; i < ship.getSquares().size(); i++) {
-                                int[] indexesShip = ship.getSquares().get(i);
-                                if (computerField[indexesShip[0]][indexesShip[1]].equals(" x")) {
-                                    countX++;
-                                }
-                            }
-                            if (countX + 1 == ship.getLength()) {
-                                sunk++;
-                                for (int i = 0; i < ship.getSquares().size(); i++) {
-                                    int[] indexesShip = ship.getSquares().get(i);
-                                    computerFieldPublic[indexesShip[0]][indexesShip[1]] = "xx";
-                                }
-                            }
-                        }
-                    }
+                    ship = computerField[indexes[0]][indexes[1]];
                     computerField[indexes[0]][indexes[1]] = " x";
                     computerFieldPublic[indexes[0]][indexes[1]] = " x";
-                    if (sunk == 1) {
-                        System.out.println("Ship has been sunk!");
-                        computerFieldPublic[indexes[0]][indexes[1]] = "xx";
-                    }
+                    markShipSunk(ship,computerField, computerShips);
                 }
-
             }
         }
         return getMove;
     }
-
 
 
     private String askPlayerForMove() {
