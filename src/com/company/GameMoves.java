@@ -123,6 +123,4 @@ public abstract class GameMoves {
             }
         }
 
-
-
 }
